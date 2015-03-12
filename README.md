@@ -14,7 +14,7 @@ Install with Packagist:
 Get data of GB/T 2260-2013.
 
 ```php
-var_dump(GB2260::getData());
+var_dump(cn\GB2260::getData());
 ```
 
 ### .parse(code)
@@ -22,7 +22,7 @@ var_dump(GB2260::getData());
 Parse a code, and get the city name of that code.
 
 ```php
-GB2260::parse(420822);
+cn\GB2260::parse(420822);
 // => '湖北省 荆门市 沙洋县'
 ```
 
