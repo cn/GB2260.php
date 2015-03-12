@@ -1,4 +1,5 @@
 <?php
+namespace cn;
 
 class GB2260{
 	protected static $_data;
@@ -16,7 +17,7 @@ class GB2260{
 		$code = preg_replace('/0+$/', '', $code);
 		$codeLength = strlen($code);
 		if ($codeLength < 2 || $codeLength > 6 || $codeLength % 2 !== 0) {
-			throw new Exception('Invalid code');
+			throw new \Exception('Invalid code');
 		}
 
 		$province = self::$_data[substr($code, 0, 2) . '0000'];
