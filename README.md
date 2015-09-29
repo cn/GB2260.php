@@ -5,11 +5,12 @@ The latest GB/T 2260 codes. Updated at 2013, published at 2014.
 ## Installation
 
 Install with Packagist:
+
 ```
-    $ composer install cn/gb2260
+$ composer install cn/gb2260
 ```
 
-### .data
+### .getData
 
 Get data of GB/T 2260-2013.
 
