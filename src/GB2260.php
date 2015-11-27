@@ -27,7 +27,7 @@ class GB2260
         }
 
         $provinceKey = intval(substr($code, 0, 2) . '0000');
-        if(!array_key_exists($provinceKey, self::$_data)){
+        if (!array_key_exists($provinceKey, self::$_data)) {
             return null;
         }
 
@@ -37,7 +37,7 @@ class GB2260
         }
 
         $areaKey = intval(substr($code, 0, 4) . '00');
-        if(!array_key_exists($areaKey, self::$_data)){
+        if (!array_key_exists($areaKey, self::$_data)) {
             return null;
         }
 
@@ -47,7 +47,7 @@ class GB2260
         }
 
         $code = intval($code);
-        if(!array_key_exists($code, self::$_data)){
+        if (!array_key_exists($code, self::$_data)) {
             return null;
         }
         $name = self::$_data[$code];
