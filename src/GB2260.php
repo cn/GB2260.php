@@ -25,28 +25,32 @@ class GB2260
             throw new \Exception('Invalid code');
         }
 
-        $province = self::$_data[substr($code, 0, 2) . '0000'];
-        if (!$province) {
+        $provinceCode = substr($code, 0, 2) . '0000';
+
+        if (!isset(self::$_data[$provinceCode])) {
             return null;
         }
 
+        $province = self::$_data[$provinceCode];
         if ($codeLength === 2) {
             return $province;
         }
 
-        $area = self::$_data[substr($code, 0, 4) . '00'];
-        if (!$area) {
+        $areaCode = substr($code, 0, 4) . '00';
+
+        if (!isset(self::$_data[$areaCode])) {
             return null;
         }
 
+        $area = self::$_data[$areaCode];
         if ($codeLength === 4) {
             return $province . ' ' . $area;
         }
 
-        $name = self::$_data[$code];
-        if (!$name) {
+        if (!isset(self::$_data[$code])) {
             return null;
         }
+        $name = self::$_data[$code];
 
         return $province . ' ' . $area . ' ' . $name;
     }

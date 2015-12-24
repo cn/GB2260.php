@@ -14,5 +14,16 @@
 	},
 	"autoload": {
 		"psr-4": { "cn\\": "src/" }
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"cn\\tests\\": "tests/"
+		}
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^4.0"
+	},
+	"scripts": {
+		"test": "phpunit --coverage-text --coverage-clover ./build/logs/clover.xml  --coverage-html ./build/logs/clover.html"
 	}
 }

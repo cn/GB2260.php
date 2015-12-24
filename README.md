@@ -1,5 +1,7 @@
 # GB/T 2260
 
+[![Build Status](https://travis-ci.org/cn/GB2260.php.svg)](https://travis-ci.org/cn/GB2260.php)
+
 The latest GB/T 2260 codes. Updated at 2013, published at 2014.
 
 ## Installation
