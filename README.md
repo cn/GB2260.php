@@ -31,5 +31,4 @@ cn\GB2260::parse(420822);
 
 ## License
 
-WTFPL
-
+This software is licensed under the [MIT License](LICENSE).
