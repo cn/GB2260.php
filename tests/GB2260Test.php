@@ -14,9 +14,8 @@ class GB2260Test extends \PHPUnit_Framework_TestCase
 
 	public function testCorrectGet()
 	{
-		$result = GB2260::parse(420822);
-		$this->assertTrue(is_string($result));
-		$this->assertEquals('湖北省 荆门市 沙洋县', $result);
+		$this->assertEquals('湖北省 荆门市 沙洋县', GB2260::parse(420822));
+		$this->assertEquals('天津市 市辖区 东丽区', GB2260::parse(120110));
 	}
 
 	/**
@@ -40,7 +39,7 @@ class GB2260Test extends \PHPUnit_Framework_TestCase
 
 	public function testNotExistsProvince()
 	{
-		$result = GB2260::parse(180);
+		$result = GB2260::parse(18);
 
 		$this->assertNull($result);
 	}
@@ -69,8 +68,8 @@ class GB2260Test extends \PHPUnit_Framework_TestCase
 	public function provinceParseProvider()
 	{
 		return array(
-			array(110, '北京市'),
-			array(110000, '北京市')
+			array(110000, '北京市'),
+			array(120000, '天津市')
 		);
 	}
 

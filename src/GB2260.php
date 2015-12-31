@@ -19,7 +19,7 @@ class GB2260
             self::$_data = require 'data.php';
         }
 
-        $code = preg_replace('/0+$/', '', $code);
+        $code = preg_replace('/(00)+$/', '', $code);
         $codeLength = strlen($code);
         if ($codeLength < 2 || $codeLength > 6 || $codeLength % 2 !== 0) {
             throw new \Exception('Invalid code');
