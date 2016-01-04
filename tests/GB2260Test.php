@@ -1,80 +1,69 @@
 <?php
 
-namespace cn\tests;
+namespace GB2260\Tests;
 
-use cn\GB2260;
+use GB2260\GB2260;
 
 class GB2260Test extends \PHPUnit_Framework_TestCase
 {
-	public function testGetData()
-	{
-		$data = GB2260::getData();
-		$this->assertTrue(is_array($data));
-	}
 
-	public function testCorrectGet()
-	{
-		$this->assertEquals('湖北省 荆门市 沙洋县', GB2260::parse(420822));
-		$this->assertEquals('天津市 市辖区 东丽区', GB2260::parse(120110));
-	}
+    /**
+     * @var \GB2260\GB2260
+     */
+    protected $gb2260;
 
-	/**
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Invalid code
-	 */
-	public function testParseError()
-	{
-		$result = GB2260::parse(1);
-	}
+    public function setUp()
+    {
+        parent::setUp();
 
-	/**
-	 * @dataProvider provinceParseProvider
-	 */
-	public function testParseProvince($code, $excepted)
-	{
-		$result = GB2260::parse($code);
+        $this->gb2260 = new GB2260();
+    }
 
-		$this->assertEquals($excepted, $result);
-	}
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Invalid code
+     */
+    public function testGetInvalidCode()
+    {
+        $result = $this->gb2260->get(1);
+    }
 
-	public function testNotExistsProvince()
-	{
-		$result = GB2260::parse(18);
+    /**
+     * @dataProvider correctCodeProvider
+     */
+    public function testGet($code, $excepted)
+    {
+        $this->assertEquals($excepted, $this->gb2260->get($code));
+    }
 
-		$this->assertNull($result);
-	}
+    /**
+     * @dataProvider notExistedCodeProvider
+     */
+    public function testGetNotExisted($code)
+    {
+        $this->assertNull($this->gb2260->get($code));
+    }
 
-	public function testGetProvinceButNotArea()
-	{
-		$result = GB2260::parse(110977);
-		$this->assertNull($result);
-	}
+    public function correctCodeProvider()
+    {
+        return [
+            [110000, '北京市'],
+            [120000, '天津市'],
+            [420800, '湖北省 荆门市'],
+            [420822, '湖北省 荆门市 沙洋县'],
+            [120100, '天津市 市辖区'],
+            [120110, '天津市 市辖区 东丽区'],
+        ];
+    }
 
-	public function testGetArea()
-	{
-		$result = GB2260::parse(130200);
-		$this->assertEquals('河北省 唐山市', $result);
-	}
-
-	/**
-	 * @dataProvider badAreaCodes
-	 */
-	public function testWrongThirdLevel($code)
-	{
-		$result = GB2260::parse($code);
-		$this->assertNull($result);
-	}
-
-	public function provinceParseProvider()
-	{
-		return array(
-			array(110000, '北京市'),
-			array(120000, '天津市')
-		);
-	}
-
-	public function badAreaCodes()
-	{
-		return array(array(120117), array(110118), array(130134));
-	}
+    public function notExistedCodeProvider()
+    {
+        return [
+            [18],
+            [423000],
+            [120117],
+            [110118],
+            [130134],
+        ];
+    }
 }

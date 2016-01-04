@@ -5,32 +5,22 @@
 [![Download](https://img.shields.io/packagist/dt/cn/gb2260.svg?style=flat-square)](https://packagist.org/packages/cn/gb2260)
 [![codecov.io](https://img.shields.io/codecov/c/github/cn/GB2260.php.svg?style=flat-square)](https://codecov.io/github/cn/GB2260.php)
 
-
 The latest GB/T 2260 codes. Updated at 2013, published at 2014.
 
 ## Installation
 
-Install with Packagist:
+Add the following line to your `composer.json` file:
 
-```
-$ composer install cn/gb2260
-```
+    "cn/gb2260": "dev-master"
 
-### .getData
+Then run `composer update` to get the package.
 
-Get data of GB/T 2260-2013.
+## Usage
 
 ```php
-var_dump(cn\GB2260::getData());
-```
+$gb2260 = new \GB2260\GB2260();
 
-### .parse(code)
-
-Parse a code, and get the city name of that code.
-
-```php
-cn\GB2260::parse(420822);
-// => '湖北省 荆门市 沙洋县'
+$gb2260->get(420822); // returns '湖北省 荆门市 沙洋县'
 ```
 
 ## License

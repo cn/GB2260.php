@@ -1,24 +1,19 @@
-<?php namespace cn;
+<?php
+
+namespace GB2260;
 
 class GB2260
 {
+
     protected static $_data;
 
-    public static function getData()
+    public function __construct()
     {
-        if (empty(self::$_data)) {
-            self::$_data = require 'data.php';
-        }
-
-        return self::$_data;
+        self::$_data = require 'data.php';
     }
 
-    public static function parse($code)
+    public function get($code)
     {
-        if (empty(self::$_data)) {
-            self::$_data = require 'data.php';
-        }
-
         $code = preg_replace('/(00)+$/', '', $code);
         $codeLength = strlen($code);
         if ($codeLength < 2 || $codeLength > 6 || $codeLength % 2 !== 0) {
@@ -36,13 +31,13 @@ class GB2260
             return $province;
         }
 
-        $areaCode = substr($code, 0, 4) . '00';
+        $prefectureCode = substr($code, 0, 4) . '00';
 
-        if (!isset(self::$_data[$areaCode])) {
+        if (!isset(self::$_data[$prefectureCode])) {
             return null;
         }
 
-        $area = self::$_data[$areaCode];
+        $area = self::$_data[$prefectureCode];
         if ($codeLength === 4) {
             return $province . ' ' . $area;
         }

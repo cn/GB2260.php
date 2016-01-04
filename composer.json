@@ -1,29 +1,31 @@
 {
-	"name": "cn/gb2260",
-	"description": "中华人民共和国国家标准GB/T 2260 行政区划代码",
-	"minimum-stability": "stable",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Shen Zhenyu",
-			"email": "zhenyupku@gmail.com"
-		}
-	],
-	"require": {
-		"php": ">=5.4.0"
-	},
-	"autoload": {
-		"psr-4": { "cn\\": "src/" }
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"cn\\tests\\": "tests/"
-		}
-	},
-	"require-dev": {
-		"phpunit/phpunit": "^4.0"
-	},
-	"scripts": {
-		"test": "phpunit --coverage-text --coverage-clover ./build/logs/clover.xml  --coverage-html ./build/logs/clover.html"
-	}
+  "name": "cn/gb2260",
+  "description": "中华人民共和国国家标准 GB/T 2260 行政区划代码",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shen Zhenyu",
+      "email": "zhenyupku@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "GB2260\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "GB2260\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.0"
+  },
+  "scripts": {
+    "test": "phpunit --coverage-text --coverage-clover ./build/logs/clover.xml  --coverage-html ./build/logs/clover.html"
+  }
 }
