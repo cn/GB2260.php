@@ -5,11 +5,11 @@ namespace GB2260;
 class GB2260
 {
 
-    protected static $_data;
+    protected $data;
 
     public function __construct()
     {
-        self::$_data = require 'data.php';
+        $this->data = require 'data.php';
     }
 
     public function get($code)
@@ -22,30 +22,33 @@ class GB2260
 
         $provinceCode = substr($code, 0, 2) . '0000';
 
-        if (!isset(self::$_data[$provinceCode])) {
+        if (!isset($this->data[$provinceCode])) {
             return null;
         }
 
-        $province = self::$_data[$provinceCode];
+        $province = $this->data[$provinceCode];
+
         if ($codeLength === 2) {
             return $province;
         }
 
         $prefectureCode = substr($code, 0, 4) . '00';
 
-        if (!isset(self::$_data[$prefectureCode])) {
+        if (!isset($this->data[$prefectureCode])) {
             return null;
         }
 
-        $area = self::$_data[$prefectureCode];
+        $area = $this->data[$prefectureCode];
+
         if ($codeLength === 4) {
             return $province . ' ' . $area;
         }
 
-        if (!isset(self::$_data[$code])) {
+        if (!isset($this->data[$code])) {
             return null;
         }
-        $name = self::$_data[$code];
+
+        $name = $this->data[$code];
 
         return $province . ' ' . $area . ' ' . $name;
     }
