@@ -9,7 +9,7 @@ class GB2260
 
     public function __construct()
     {
-        $this->data = require 'data.php';
+        $this->data = require __DIR__.'/data.php';
     }
 
     public function get($code)
