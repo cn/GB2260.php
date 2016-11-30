@@ -1,0 +1,6 @@
+version: '2'
+services:
+  red:
+    image: red:latest
+    volumes:
+      - .:/working

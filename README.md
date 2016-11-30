@@ -20,7 +20,19 @@ Then run `composer update` to get the package.
 ```php
 $gb2260 = new \GB2260\GB2260();
 
+// 普通城市
 $gb2260->get(420822); // returns '湖北省 荆门市 沙洋县'
+$gb2260->getCode('湖北省 荆门市 沙洋县'); // returns 420822
+
+// 直辖市
+$gb2206->get(110101); // returns '北京市 市辖区 东城区'
+$gb2206->getCode('北京市 市辖区 东城区'); // returns 110101
+$gb2206->getCode('北京市 东城区'); // returns 110101
+$gb2260->getCode('北京市 县 密云县'); // returns 110228
+$gb2260->getCode('北京市 密云县'); // returns 110228
+
+// 港澳台
+$gb2260->getCode('台湾省 台北市'); // returns 710100
 ```
 
 ## License
